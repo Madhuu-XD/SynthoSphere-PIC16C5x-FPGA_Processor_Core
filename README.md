@@ -14,7 +14,7 @@ The PIC16C5x core is implemented as a single Verilog source file.
 PIC16C5x.v                  -- RTL source file for the PIC16C5x core
 tb_PIC16C5x.v               -- Rudimentary testbench
 
-#### Synthesis using YOSYS
+### Compilation
 The objective is for the PIC16C5x to synthesize into a small FPGA, and to be able to support an operating frequency greater than that commonly supported by a commercial single-chip implementation. The supplied core satisfies both objectives.
 
 Use the respective directives in verilog `$dumpfile` and `$dumpvars` for dumping all the generated values in a given file. Once the files are created we are ready to go for simulation. Now open the terminal in the respective directory where both the design and testbench verilog files are present.
@@ -22,13 +22,34 @@ Use the command `iverilog PIC16C5x.v tb_PIC16C5x.v` to compile and simulate both
 Now, we have to run the generated a.out file using `./a.out` command. Once this is done, a vcd (value change dump) file which will be used to generate waveforms is created. To see the waveform run 
 `gtkwave own_PIC16C5x.vcd` command in the terminal. 
 
-##### Pre-synthesis Waveform 
+### Pre-synthesis Waveform 
 ![waveform using gtkwave command](https://github.com/Madhuu-XD/SynthoSphere-PIC16C5x-FPGA_Processor_Core/blob/main/output/pre_synthesis.png)
 The waveform suggests the output values being displayed based on testbench. 
 
-##### Now its time to perform Synthesis!!!
+### Synthesis using YOSYS
+![The main yosys window is shown](https://github.com/Madhuu-XD/SynthoSphere-PIC16C5x-FPGA_Processor_Core/blob/main/output/yosys.png)
+
+### Now its time to perform Synthesis!!!
 For performing synthesis we have to open yosys, to do so use the command `yosys`. Now we are inside yosys shell and ready to perform synthesis for our design. Before this we have to load the library and this can be done by using the command `read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80` . Then, the verilog file must be read by the tool in order to perform synthesis, use `read_verilog PIC16C5x.v` to do so.
 Once this is done we are good to go for synthesis!!! Use `synth -top PIC16C5x` to perform synthesis. Now the tool will perform synthesis and generates a netlist which contains the information about the gates and flip-flops used in the design.
+
+### Yosys commands
+###### $yosys
+###### yosys> read_liberty -lib <relative or abs path>/ lib file 
+###### yosys> read_verilog <verilog_file.v>
+###### yosys> synth -top <verilog_file> 
+###### yosys> abc -liberty <relative or abs path>/ lib file ( generates results on ur design → netlist verify them before continuing)
+###### yosys> show 
+###### yosys> write_verilog <file_name>.v  OR    write_verilog -noattr  <file_name>.v 
+
+#### Post Synthesis Yosys commands
+![Post Synthesis intermediate result 1](https://github.com/Madhuu-XD/SynthoSphere-PIC16C5x-FPGA_Processor_Core/blob/main/output/yosys-0.png)
+
+#### Post Synthesis intermediate result 1
+![Post Synthesis intermediate result 1](https://github.com/Madhuu-XD/SynthoSphere-PIC16C5x-FPGA_Processor_Core/blob/main/output/yosys-1.png)
+
+#### Post Synthesis intermediate result 2
+![Post Synthesis intermediate result 2](https://github.com/Madhuu-XD/SynthoSphere-PIC16C5x-FPGA_Processor_Core/blob/main/output/yosys-2.png)
 
 ###### Post-synthesis 
 ![](https://github.com/Madhuu-XD/SynthoSphere-PIC16C5x-FPGA_Processor_Core/blob/main/output/post_synthesis.png)
