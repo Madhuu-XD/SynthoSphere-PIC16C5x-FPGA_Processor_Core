@@ -31,7 +31,7 @@ For performing synthesis we have to open yosys, to do so use the command `yosys`
 Once this is done we are good to go for synthesis!!! Use `synth -top PIC16C5x` to perform synthesis. Now the tool will perform synthesis and generates a netlist which contains the information about the gates and flip-flops used in the design.
 
 ###### Post-synthesis 
-![](https://github.com/Madhuu-XD/SynthoSphere-PIC16C5x-FPGA_Processor_Core/blob/main/output/post_synthesis.svg)
+![](https://github.com/Madhuu-XD/SynthoSphere-PIC16C5x-FPGA_Processor_Core/blob/main/output/post_synthesis.png)
 
 After this the next step is to write the generated netlist to a file. To do so,
 ##### Use `write_verilog -noattr netlist_Pic16c5x.v` - This provides a netlist with the comments and redundancies!!
