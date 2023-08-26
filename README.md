@@ -1,7 +1,7 @@
 # SynthoSphere_PIC16C5x_FPGA_Processor_Core
 PIC16C5x-compatible FPGA Processor core
 
-# General Description
+## General Description
 This project is provides a synthesizable core implementation of the PIC16C5x microcontroller. As a core, it has a full complement of PIC16C5x RAM and peripherals. However, the user is responsible for providing memory for the core's program and for configuring the core's I/O ports.
  
 ## Features
@@ -273,14 +273,13 @@ yosys> write_verilog <file_name>.v  OR    write_verilog -noattr  <file_name>.v
 ##### Post-synthesis 
 ![](https://github.com/Madhuu-XD/SynthoSphere-PIC16C5x-FPGA_Processor_Core/blob/main/output/post_synthesis.png)
 
-After this the next step is to write the generated netlist to a file. To do so,
+After this the next step is to write the generated netlist to a file.
 
 #### Netlist generation
 ```
 write_verilog -noattr netlist_Pic16c5x.v
 ```
-This provides a netlist with the comments and redundancies.
-Since the netlist files are generated, exit from yosys. Use `exit` to do so.
+This provides a netlist with the comments and redundancies. Since the netlist files are generated, exit from yosys. Use `exit` to do so.
 
 #### Synthesis Done!!!
 In conclusion, the PIC16C5x supports to full instruction set of the PIC16C5x family of microcomputers, and it also incorporates the I/O and timers found in the family. The core also implements all of the RAM normally found in this family of microcomputers.
